@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <!-- css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <!-- fin css -->
+    <!-- debut importation script js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>    
+    <!-- fin importation script js -->
+    <title>Karl Zawisla</title>
+</head>
+<body>
+    <div id="content"> 
+        <div id="contentbar">
+            <!-- tabs -->
+            <ul class="tab">
+                <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'WelcomeTab')" id="defaultOpen">Welcome</a></li>
+                <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'ProjectsTab')">Projects</a></li>
+                <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'ContactTab')">Contact</a></li>
+            </ul>
+
+            <!-- welcome tab -->
+            <div id="WelcomeTab" class="tabcontent">
+                <h1>Welcome</h1> <br />
+                <p>My name is Karl Zawisla, I am a young developer who just got his BTS SIO SLAM.<br />
+                    This website gathers my resume, my projects (personal and school) and many other things.
+                </p>
+                <br />
+                <a target=" "href="resume.html">Read my resume (french version)</a> <br />
+                <i>The English version is coming soon !</i>
+            </div>
+            <!-- fin welcome tab -->
+
+            <!-- projects tab -->
+            <div id="ProjectsTab" class="tabcontent">
+                <h1>Projects</h1> <br />
+                <p>My projects are on my github page, you will find my site as well as 
+                    applications (school or not).
+                </p>
+                <br />
+                <a target=" " href="https://github.com/oiseauChaussette">My Github</a>
+            </div>    
+            <!-- fin projects tab -->
+
+            <!-- contact tab -->
+            <div id="ContactTab" class="tabcontent">
+                <h1>Contact</h1> <br />
+                <a href="mailto:karl.zawisla@protonmail.com">Contact me by mail</a> <br /> <br />
+                <a target=" " href="https://www.linkedin.com/in/karl-zawisla-945178b3/">Contact me on LinkedIn</a> <br /> <br />
+                <a target=" " href="https://www.twitter.com/arke_drille">Follow me on Twitter !</a> <br /> <br />
+                <p>Made with love by Karl Zawisla with a template by <a target=" " href="http://chloechantelle.com/">Chloe Chantelle</a></p>
+            </div>
+            <!-- fin contact tab -->
+
+            <!-- meteo -->
+            <div id="weather">          
+                <h21 id="temp_curr">c   
+                </h21>
+            </div>
+            <!-- fin meteo -->
+        </div>        
+
+        
+
+        <div id="main" class="show">
+            <div id="main" class="hide">
+                <div id="Links">
+                <p>
+                
+                </p>
+                </div> <!-- End #Links -->
+            
+                <div id="main" class="hide">
+                    <div id="Music">
+                    <p>
+                
+                    </p>
+                    </div> <!-- #Music -->
+                </div> 
+            </div>  
+        </div>
+    </div>
+    <!-- scripts js -->
+    <!-- meteo js -->
+    <script>
+        var json_url = "http://api.openweathermap.org/data/2.5/weather?id=2643743&appid=832719dabc0aaac91c4a93c2a64e12d4&units=metric";
+        var city;
+        var temp_curr;
+        var temp_low;
+        var temp_high;
+        var description;
+        $.when(
+            $.getJSON(json_url)
+            ).done( function(json_obj) {
+            city = json_obj["name"];
+            temp_curr = (json_obj["main"]["temp"]);
+            temp_low = (json_obj["main"]["temp_min"]);
+            temp_high = (json_obj["main"]["temp_max"]);
+            description = json_obj["weather"][0]["main"];
+        
+            insertWeatherInfo();
+            }
+        );
+        
+        function insertWeatherInfo() {
+            //$("#city").append(city);
+            $("#description").append(description);
+            $("#temp_curr").prepend(temp_curr + "&deg;");
+            $("#temp_low").append(temp_low + "&deg; /");
+            $("#temp_high").append(temp_high + "&deg;");
+        }
+    </script>
+    <!-- fin meteo js -->
+
+    <!-- affiche contenu -->
+    <script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    
+    // Get the element with id="defaultOpen" and click on it
+    //Ici : Welcome
+    document.getElementById("defaultOpen").click();
+    </script>   
+        
+    <!-- <script language="JavaScript">
+        $('body').on('click','nav a', function(e) {
+            $('#main').removeClass('hide');
+            $('#main').children().addClass('hide');
+            $($(this).attr('href')).removeClass('hide');
+            e.preventDefault();
+        });
+    </script> -->
+        
+    <!-- <script>
+        (function (window, document) {
+            var layout   = document.getElementById('layout'),
+                side     = document.getElementById('side'),
+                sideLink = document.getElementById('sideLink');
+        
+            function toggleClass(element, className) {
+                var classes = element.className.split(/\s+/),
+                    length = classes.length,
+                    i = 0;
+                for(; i < length; i++) {
+                    if (classes[i] === className) {
+                    classes.splice(i, 1);
+                    break;
+                    }
+                }
+                // The className is not found
+                if (length === classes.length) {
+                    classes.push(className);
+                }
+                element.className = classes.join(' ');
+            }
+        
+            sideLink.onclick = function (e) {
+                var active = 'active';
+                e.preventDefault();
+                toggleClass(layout, active);
+                toggleClass(side, active);
+                toggleClass(sideLink, active);
+            };
+        }(this, this.document));
+    </script> -->
+        
+    <!-- <script>
+        var element_pos = 0;  
+        var iCnt = 0;
+        $(document).ready(function() {
+            $(function() { $('#content').draggable(); });
+            $(function() { $("#content").draggable().resizable(); });
+            $('#btClickMe').click(function() {
+                var dynamic_div = $(document.createElement('div')).css({
+                    border: '1px dashed', position: 'absolute', left: element_pos, 
+                    top: $('#content').height() + 20,
+                    width: '120', height: '120', padding: '3', margin: '0'
+                });
+                element_pos = element_pos + $('#content').width() + 20;
+                $(dynamic_div).appendTo('#content').draggable();
+                iCnt = iCnt + 1;
+            });
+        });
+    </script> -->       
+</body>
+</html>

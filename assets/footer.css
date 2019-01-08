@@ -1,0 +1,30 @@
+footer{
+    background-color:#1d1d1d;
+    border:5px solid #4981b5;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+    color:#c6c6c6;
+    font-size:9px;
+    text-align:center;
+    padding-top:15px;
+    padding-bottom:10px;
+    line-height:16px;
+        position: absolute;
+        bottom: 0px;
+        left: 0%;
+        height: 10px;
+        width: 100%;
+    bottom: 0;
+}
+     
+    footer a:link, footer a:visited{
+        text-decoration:underline;
+        color:#c6c6c6; 
+    }
+    footer a:hover{
+        text-decoration:underline;
+        color:blue;
+    }
+    footer a:active{
+        text-decoration:underline;
+        color:#006f00; 
+    }
